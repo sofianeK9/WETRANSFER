@@ -1,0 +1,57 @@
+.container {
+    background-color: rgb(201, 201, 201);
+    width: 500px;
+    padding: 10px;
+    padding-bottom: 50px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    border: 1px solid black;
+    border-radius: 25px;
+    box-shadow:rgb(24, 24, 24) 0px 5px 15px;
+}
+
+.ajoutFichier {
+    text-align: center;
+}
+
+h1 {
+    font-size:35px;
+    text-align: center;
+}
+
+.detail {
+    font-size: 20px;
+    cursor: default;
+}
+
+.emailPartage {
+    cursor: default;
+    height: 25px;
+}
+
+.btn {
+    text-align: center;
+    height: 30px;
+    padding-inline: 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: rgb(51, 50, 50);
+    color: #fefefe;
+    transition: 0.3s;
+
+}
+
+.btn:hover {
+    background-color: #fefefe;
+    color: rgb(51, 50, 50);
+    transition : 0.3s;
+}
+
+.btnClose {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
