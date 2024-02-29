@@ -1,4 +1,36 @@
 <?php
+$fichier = $_FILES['fichier'];
+
+var_dump($fichier);
+
+$erreur = "";
+if($fichier['error'] == UPLOAD_ERR_OK) {
+    $partie = explode('.', $fichier['name']);
+    $extension = $partie[1];
+    if($extension != 'php') {
+
+        $finfo = finfo_open(FILEINFO_MIME);
+        $info = finfo_file($finfo, $fichier['tmp_name']);
+
+        // si le type n'est pas un php : 
+        if(!str_contains($info, 'text/x-php')) {
+            $taille = filesize($fichier['tmp_name']);
+
+            if($taille < 200000) {
+                move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/ExoPhp/WETRANSFER/fichiersUpload/' . $fichier['name']);
+            } else {
+                $erreur = "Le fichier est trop volumineux";
+            }
+        } else {
+            $erreur = "erreur du contenu";
+        }
+    } else {
+        $erreur = "erreur du nom";
+    }
+    
+} else {
+    $erreur = "Une erreur est survenue";
+}
 
 ?>
 
@@ -14,15 +46,19 @@
     <div class="container">
         <div class="ajoutFichier">
             <h1>Ajouter un fichier</h1>
-            <form method="POST" action="upload.php" enctype="multipart/form-data">
-            <!-- On limite le fichier à 100Ko -->
-            <input type="hidden" name="MAX_FILE_SIZE" value="20000">
-            Fichier : <input type="file" name="" id="avatar">
-            <input type="submit" name="envoyer" value="Envoyer le fichier">
-</form>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="fichier">Choisir un fichier</label>
+                <input type="file" name="fichier" id="fichier">
+                <input class="btn btnAjoutFichier" type="submit" value="Envoyer le fichier">
+            </form>
         </div>
+
+        <?php if($erreur): ?>
+            <p class="error"><?= $erreur ?></p>
+        <?php endif; ?>
+
         <div>
-            <h2 class="detail">A partagé avec :</h2>
+            <h2 class="detail">Partager le fichier avec :</h2>
             <input class="emailPartage" type="email">
             <button class="btn btnPartage">Partager</button>
         </div>
