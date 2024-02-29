@@ -31,7 +31,7 @@ $fichiers = array_diff($fichiers, array('.', '..'));
         </nav>
 </header>
 <body>
-    <a class="btn" onclick="ouvrirModal('modalAjout')" >Ajouter un fichier</a>
+    <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')" >Ajouter un fichier</a>
     <!-- tableau de mes fichiers -->
     <h2 id="mesFichiers">Mes fichiers</h2>
     <!-- si j'ai des fichiers, le tableau s'affiche -->
@@ -51,7 +51,7 @@ $fichiers = array_diff($fichiers, array('.', '..'));
         <tr>
             <td><?= $f ?></td>
             <!-- ajout fonction JS pour delete : créer une popup de confirmation? -->
-            <td><span class="material-symbols-outlined">delete</span></td>
+            <td><span onclick="ouvrirModal('modalDelete')" class="material-symbols-outlined">delete</span></td>
             <!-- ajout fonction JS pour download : créer une popup de confirmation? -->
             <td><span class="material-symbols-outlined">download</span></td>
             <td><a class="btn" onclick="ouvrirModal('modalDetails')">Détails</a></td>
@@ -120,6 +120,14 @@ $fichiers = array_diff($fichiers, array('.', '..'));
     <div id="modalModifMdp" class="modal hidden">
         <div class="modal-content">
             <?php include '../pages/popUpModificationMdp.php' ?>
+        </div>
+    </div>
+    <div id="modalDelete" class="modal hidden">
+        <div class="container">
+            <h1>Suppression du fichier</h1>
+            <h2 class="detail">Etes-vous certain de vouloir supprimer le fichier <?= $f ?> ? </h2>
+            <button class="btn btnDelete">Oui</button>
+            <a href="fichiers.php" class="btnClose">X</a>
         </div>
     </div>
 </body>
