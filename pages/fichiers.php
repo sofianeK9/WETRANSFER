@@ -1,9 +1,3 @@
-<?php 
-session_start();
-if (isset($_SESSION["connecte"])){
-    header:('Location: ../connexion.php');
-    exit();}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
