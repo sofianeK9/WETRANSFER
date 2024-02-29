@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (isset($_SESSION["connecte"])){
+    header:('Location: ../connexion.php');
+    exit();}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +23,9 @@
         </nav>
 </header>
 <body>
-    <button href="/WETRANSFER/ajout.php">Ajouter un fichier</button>
+    <a class="btn" 
+    href="../pages/popUpAjoutFichier.php"
+    >Ajouter un fichier</a>
     <h2 id="mesFichiers">Mes fichiers</h2>
     <?php //if (): ?>
     <table>
@@ -29,25 +37,25 @@
             <th>Détails</th>
         </tr>
     </thead>
-    <?php //foreach ?>
+    <?php //foreach($fichiers as $fichier) ?>
     <tbody>
         <tr>
             <td>fef</td>
             <td><span class="material-symbols-outlined">delete</span></td>
             <td><span class="material-symbols-outlined">download</span></td>
-            <td><button>Détails</button></td>
+            <td><a class="btn" href="../pages/popUpDetails.php">Détails</a></td>
         </tr>
         <tr>
             <td>zfz</td>
             <td><span class="material-symbols-outlined">delete</span></td>
             <td><span class="material-symbols-outlined">download</span></td>
-            <td><button>Détails</button></td>
+            <td><a class="btn" href="../pages/popUpDetails.php">Détails</a></td>
         </tr>
         <tr>
             <td>fesg</td>
             <td><span class="material-symbols-outlined">delete</span></td>
             <td><span class="material-symbols-outlined">download</span></td>
-            <td><button>Détails</button></td>
+            <td><a class="btn" href="../pages/popUpDetails.php">Détails</a></td>
         </tr>
     </tbody>
     </table>
@@ -86,3 +94,14 @@
     <?php //endif ?>
 </body>
 </html>
+<script>
+    function details(){
+        $.ajax({
+            type : 'POST',
+            url : '../pages/popUpDetails.php',
+            success:function(){
+                
+            }
+        })
+    }
+</script>
