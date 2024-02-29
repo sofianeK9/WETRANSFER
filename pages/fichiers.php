@@ -1,8 +1,9 @@
 <?php 
-session_start();
-if (isset($_SESSION["connecte"])){
-    header:('Location: ../connexion.php');
-    exit();}
+//session_start();
+//if (!isset($_SESSION["connecte"])){
+    //header('Location: ../pages/connexion.php');
+ //   exit();}
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +19,13 @@ if (isset($_SESSION["connecte"])){
 <nav class="navbar">
             <a href="#mesFichiers">Mes fichiers</a>
             <a href="#fichiersPartages">Fichiers partagés</a>
-            <a href="/WETRANSFER/pages/profil.php">Modifier mon profil</a>
-            <a href="/WeTransfer/fonctions/fonctions.php">Se déconnecter</a>
+            <a href="../pages/popUpModificationMdp.php">Modifier mon profil</a>
+            <a href="../pages/deconnexion.php">Se déconnecter</a>
         </nav>
 </header>
 <body>
-    <a class="btn" 
-    href="../pages/popUpAjoutFichier.php"
+    <a class="btn" onclick="ajoutFichier()" 
+    
     >Ajouter un fichier</a>
     <h2 id="mesFichiers">Mes fichiers</h2>
     <?php //if (): ?>
@@ -92,6 +93,7 @@ if (isset($_SESSION["connecte"])){
     <?php //else: ?>
     <p>Aucun fichier disponible</p>
     <?php //endif ?>
+    
 </body>
 </html>
 <script>
@@ -104,4 +106,9 @@ if (isset($_SESSION["connecte"])){
             }
         })
     }
+
+    function ajoutFichier() {
+        window.open('../pages/popUpAjoutFichier.php', '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
+    }
+
 </script>
