@@ -37,3 +37,6 @@ td{
     color: rgb(51, 50, 50);
     transition : 0.3s;
 }
+.hidden {
+  display: none;
+}
