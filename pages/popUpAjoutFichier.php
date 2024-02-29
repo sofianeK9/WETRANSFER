@@ -77,7 +77,7 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
             <input class="emailPartage" type="email">
             <button class="btn btnPartage">Partager</button>
         </div>
-        <button class="btn btnClose">Fermer</button>
+        <a href="fichiers.php" class="btnClose">X</a>
     </div>
 </body>
 </html>

@@ -28,7 +28,7 @@ $partage = false;
         </div>
     <?php endif; ?>
          
-        <button class="btn btnClose">Fermer</button>
+        <a href="fichiers.php" class="btnClose">X</a>
     </div>
 </body>
 </html>

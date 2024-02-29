@@ -2,7 +2,8 @@
     background-color: rgb(201, 201, 201);
     width: 500px;
     padding: 10px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
     position: absolute;
     top: 30%;
     left: 30%;
@@ -10,7 +11,9 @@
     border-radius: 25px;
     box-shadow:rgb(24, 24, 24) 0px 5px 15px;
 }
-
+a {
+    text-decoration: none;
+}
 .ajoutFichier {
     text-align: center;
 }
@@ -49,9 +52,18 @@ h1 {
 
 .btnClose {
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
+    font-size: 20px;
     margin: 10px;
+    color: black;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.btnClose:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
 }
 
 .btnAjoutFichier {
