@@ -8,7 +8,7 @@ connexion();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/WeTransfer/css/inscription.css">
+    <link rel="stylesheet" href="/WETRANSFER/css/inscription.css">
     <title>Page de connexion</title>
 </head>
 
@@ -24,7 +24,7 @@ connexion();
                 <input id="motDePasse" name="motDePasse" type="text">
 
                 <input id="submit" type="submit" value="connexion">
-                <a href="/WeTransfer/pages/inscription.php">Inscrivez-vous !</a>
+                <a href="/WETRANSFER/pages/inscription.php">Inscrivez-vous !</a>
             </fieldset>
         </form>
     </div>

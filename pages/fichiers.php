@@ -13,7 +13,7 @@
             <a href="#mesFichiers">Mes fichiers</a>
             <a href="#fichiersPartages">Fichiers partagés</a>
             <a href="/WETRANSFER/pages/profil.php">Modifier mon profil</a>
-            <a href="/WeTransfer/pages/deconnexion.php">Se déconnecter</a>
+            <a href="/WETRANSFER/pages/deconnexion.php">Se déconnecter</a>
         </nav>
 </header>
 <body>
