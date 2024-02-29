@@ -58,3 +58,10 @@ h1 {
 .btnAjoutFichier {
     margin-top: 10px;
 }
+
+.erreur {
+    color: #aa0606;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
