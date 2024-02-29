@@ -26,7 +26,6 @@ h1 {
 }
 
 .emailPartage {
-    cursor: default;
     height: 25px;
 }
 
@@ -57,4 +56,21 @@ h1 {
 
 .btnAjoutFichier {
     margin-top: 10px;
+}
+
+.erreur {
+    color: #aa0606;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+}
+
+.success {
+    color: rgb(2, 148, 2);
+    font-size: 15px;
+}
+
+span {
+    font-weight: bold;
+    color: rgb(1, 117, 1);
 }

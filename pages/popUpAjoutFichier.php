@@ -1,35 +1,46 @@
 <?php
-$fichier = $_FILES['fichier'];
-
-var_dump($fichier);
 
 $erreur = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+$fichier = $_FILES['fichierUpload'];
+
+/* var_dump($fichier); */
+
+// si il n'y a pas d'erreur :
 if($fichier['error'] == UPLOAD_ERR_OK) {
+    // on recupere l'extension
     $partie = explode('.', $fichier['name']);
     $extension = $partie[1];
+    // on verifie que l'extension n'est pas du .php
     if($extension != 'php') {
-
+        // on ouvre le fichier
         $finfo = finfo_open(FILEINFO_MIME);
+        // on recupere le type du fichier (pour verifier le contenu du fichier)
         $info = finfo_file($finfo, $fichier['tmp_name']);
 
-        // si le type n'est pas un php : 
+        // si le fichier ne contient pas de php :
         if(!str_contains($info, 'text/x-php')) {
+            // on recupere la taille du fichier
             $taille = filesize($fichier['tmp_name']);
 
-            if($taille < 200000) {
+            // si la taille ne depasse pas 20Mo :
+            if($taille < 20480) {
+                // on enregistre le fichier dans le dossier choisi
                 move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/ExoPhp/WETRANSFER/fichiersUpload/' . $fichier['name']);
             } else {
                 $erreur = "Le fichier est trop volumineux";
             }
         } else {
-            $erreur = "erreur du contenu";
+            $erreur = "Le fichier ne doit pas contenir de php";
         }
     } else {
-        $erreur = "erreur du nom";
+        $erreur = "le fichier ne doit pas etre un .php";
     }
-    
 } else {
     $erreur = "Une erreur est survenue";
+}
 }
 
 ?>
@@ -47,14 +58,18 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
         <div class="ajoutFichier">
             <h1>Ajouter un fichier</h1>
             <form method="POST" enctype="multipart/form-data">
-                <label for="fichier">Choisir un fichier</label>
-                <input type="file" name="fichier" id="fichier">
+                <label for="fichierUpload">Choisir un fichier</label>
+                <input type="file" name="fichierUpload">
                 <input class="btn btnAjoutFichier" type="submit" value="Envoyer le fichier">
             </form>
         </div>
 
         <?php if($erreur): ?>
-            <p class="error"><?= $erreur ?></p>
+            <p class="erreur"><?= $erreur ?></p>
+        <?php else: ?>
+            <?php if($_SERVER["REQUEST_METHOD"] == "POST") : ?>
+            <p class="success"> Le fichier <span><?= $fichier['name'] ?></span> a bien été envoyé</p>
+            <?php endif; ?>
         <?php endif; ?>
 
         <div>

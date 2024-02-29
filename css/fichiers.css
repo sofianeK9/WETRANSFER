@@ -19,3 +19,21 @@ td {
 td{
     text-align: center;
 }
+.btn {
+    text-align: center;
+    height: 30px;
+    padding-inline: 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: rgb(51, 50, 50);
+    color: #fefefe;
+    transition: 0.3s;
+
+}
+
+.btn:hover {
+    background-color: #fefefe;
+    color: rgb(51, 50, 50);
+    transition : 0.3s;
+}
