@@ -20,7 +20,7 @@ function inscription()
 
             echo "Inscription réussie !";
 
-            header("Location: /WeTransfer/pages/connexion.php");
+            header("Location: /WETRANSFER/pages/connexion.php");
             exit();
         } elseif ($motDePasse != $confirmationmotDePasse) {
             echo "Les mots de passe ne correspondent pas. Veuillez réessayer.";
@@ -47,7 +47,7 @@ function inscription()
                     $identifiants = explode(",", $ligne);
                     if ($identifieur == $identifiants[0] && password_verify($mdp, trim($identifiants[1]))){
                         $_SESSION["connecte"] = true;
-                        header("Location: /WeTransfer/pages/fichiers.php");
+                        header("Location: /WETRANSFER/pages/fichiers.php");
                         exit();
                     }
                 }
