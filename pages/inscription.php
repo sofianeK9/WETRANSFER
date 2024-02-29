@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/WeTransfer/css/inscription.css">
+    <link rel="stylesheet" href="/WETRANSFER/css/inscription.css">
     <title>Page d'inscription</title>
 </head>
 
@@ -28,7 +28,7 @@ ini_set('display_errors', 1);
                 <input id="confirmationmotDePasse" name="confirmationmotDePasse" type="password">
 
                 <input id="submit" type="submit" value="Inscription">
-                <a href="/WeTransfer/pages/connexion.php">Déjà inscrit ? Connectez-vous !</a>
+                <a href="/WETRANSFER/pages/connexion.php">Déjà inscrit ? Connectez-vous !</a>
             </fieldset>
         </form>
     </div>

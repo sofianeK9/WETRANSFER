@@ -59,6 +59,6 @@ function inscription()
 function deconnexion()
 {
     session_destroy();
-    header("Location: /WeTransfer/pages/connexion.php");
+    header("Location: /WETRANSFER/pages/connexion.php");
     exit();
 }
