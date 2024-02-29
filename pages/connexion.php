@@ -1,6 +1,6 @@
 <?php require_once '../fonctions/fonctions.php';
-connexion();
 ini_set('display_errors', 1);
+connexion();
 ?>
 <!DOCTYPE html>
 <html lang="en">

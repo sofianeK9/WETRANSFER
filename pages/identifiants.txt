@@ -4,3 +4,5 @@ toto@hotmail.fr,$2y$10$zcGlFm4kPZ5fKG2hPXH7FegZyI.iUIAy.hksjp9fJLu/JMXc4QpN2
 alice@hotmail.fr,$2y$10$9hMq.OMHskfW4KU1SB6C6u6iD0jzwjbMmyl3ibMpdTDawc1znW1Di
 bob@hotmail.fr,$2y$10$xvTUhFT1cOtP1U2bEcOP5ebbtaPe5L/CKfJGvle4AuBTorXkzxOjW
 tata@hotmail.fr,$2y$10$uOMZrZFcgfDfgLZzw8oMfOjfxLV7STxKgwow./qXZFWs5ip5FXixi
+claire@test.com,$2y$10$brcUJtdbiFEXzPB7cybM/egho3I0Fu2KyP.n87RGXHdc7RF4Q0KRm
+b@test.com,$2y$10$cMCyeY2SQ3GjzLGwQ1fAlenHpy4karYOvK8e9.mOA9moV9T7vmdRG
