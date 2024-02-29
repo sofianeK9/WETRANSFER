@@ -1,9 +1,8 @@
 <?php 
-//session_start();
-//if (!isset($_SESSION["connecte"])){
-    //header('Location: ../pages/connexion.php');
- //   exit();}
- 
+session_start();
+if (isset($_SESSION["connecte"])){
+    header:('Location: ../connexion.php');
+    exit();}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +18,8 @@
 <nav class="navbar">
             <a href="#mesFichiers">Mes fichiers</a>
             <a href="#fichiersPartages">Fichiers partagés</a>
-            <a href="../pages/popUpModificationMdp.php">Modifier mon profil</a>
-            <a href="../pages/deconnexion.php">Se déconnecter</a>
+            <a href="/WETRANSFER/pages/profil.php">Modifier mon profil</a>
+            <a href="/WeTransfer/fonctions/fonctions.php">Se déconnecter</a>
         </nav>
 </header>
 <body>

@@ -66,6 +66,10 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
 
         <?php if($erreur): ?>
             <p class="erreur"><?= $erreur ?></p>
+        <?php else: ?>
+            <?php if($_SERVER["REQUEST_METHOD"] == "POST") : ?>
+            <p class="success"> Le fichier <span><?= $fichier['name'] ?></span> a bien été envoyé</p>
+            <?php endif; ?>
         <?php endif; ?>
 
         <div>
@@ -73,7 +77,7 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
             <input class="emailPartage" type="email">
             <button class="btn btnPartage">Partager</button>
         </div>
-        <button class="btn btnClose">Fermer</button>
+        <a href="fichiers.php" class="btnClose">X</a>
     </div>
 </body>
 </html>
