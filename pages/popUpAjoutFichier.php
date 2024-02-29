@@ -66,6 +66,8 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
 
         <?php if($erreur): ?>
             <p class="erreur"><?= $erreur ?></p>
+        <?php else: ?>
+            <p class="success"> Le fichier <span><?= $fichier['name'] ?></span> a bien été envoyé</p>
         <?php endif; ?>
 
         <div>

@@ -62,6 +62,16 @@ h1 {
 .erreur {
     color: #aa0606;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
+}
+
+.success {
+    color: rgb(2, 148, 2);
+    font-size: 15px;
+}
+
+span {
+    font-weight: bold;
+    color: rgb(1, 117, 1);
 }
