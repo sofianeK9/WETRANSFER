@@ -40,7 +40,6 @@ h1 {
     background-color: rgb(51, 50, 50);
     color: #fefefe;
     transition: 0.3s;
-
 }
 
 .btn:hover {
@@ -54,4 +53,8 @@ h1 {
     bottom: 0;
     right: 0;
     margin: 10px;
+}
+
+.btnAjoutFichier {
+    margin-top: 10px;
 }
