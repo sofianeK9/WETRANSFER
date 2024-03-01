@@ -112,8 +112,6 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
                 // Récupération des données existantes du fichier JSON
                 $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);
 
-                /* if(!array_column($existingData, $fileInfo['name']))
-                { */
                 // Ajout des nouvelles informations sur le fichier
                 $existingData[] = $fileInfo;
 
