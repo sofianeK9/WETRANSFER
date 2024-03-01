@@ -73,67 +73,74 @@ function deconnexion()
     exit();
 }
 
-function upload() {
-if($_SERVER["REQUEST_METHOD"] == "POST")
+function upload()
 {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$fichier = $_FILES['fichierUpload'];
+        $fichier = $_FILES['fichierUpload'];
 
-/* var_dump($fichier); */
+        
+        $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
+        $dataFichiers = fopen('dataFichiers.json', "a");
+        fwrite($dataFichiers, "$emailPartager\n");
+        fclose($dataFichiers);
+        $nombreTelechargement = 0;
 
-// si il n'y a pas d'erreur :
-if($fichier['error'] == UPLOAD_ERR_OK) {
-    // on recupere l'extension
-    $partie = explode('.', $fichier['name']);
-    $extension = $partie[1];
-    // on verifie que l'extension n'est pas du .php
-    if($extension != 'php') {
-        // on ouvre le fichier
-        $finfo = finfo_open(FILEINFO_MIME);
-        // on recupere le type du fichier (pour verifier le contenu du fichier)
-        $info = finfo_file($finfo, $fichier['tmp_name']);
+        // si il n'y a pas d'erreur :
+        if ($fichier['error'] == UPLOAD_ERR_OK) {
+            // on recupere l'extension
+            $partie = explode('.', $fichier['name']);
+            $extension = $partie[1];
+            // on verifie que l'extension n'est pas du .php
+            if ($extension != 'php') {
+                // on ouvre le fichier
+                $finfo = finfo_open(FILEINFO_MIME);
+                // on recupere le type du fichier (pour verifier le contenu du fichier)
+                $info = finfo_file($finfo, $fichier['tmp_name']);
 
-        // si le fichier ne contient pas de php :
-        if(!str_contains($info, 'text/x-php')) {
-            // on recupere la taille du fichier
-            $taille = filesize($fichier['tmp_name']);
+                // si le fichier ne contient pas de php :
+                if (!str_contains($info, 'text/x-php')) {
+                    // on recupere la taille du fichier
+                    $taille = filesize($fichier['tmp_name']);
 
-            // si la taille ne depasse pas 20Mo :
-            if($taille < 2000480) {
-                // on enregistre le fichier dans le dossier choisi
-                move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/WETRANSFER/fichiersUpload/' . $fichier['name']);
+                    // si la taille ne depasse pas 20Mo :
+                    if ($taille < 2000480) {
+                        // on enregistre le fichier dans le dossier choisi
+                        move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/WETRANSFER/fichiersUpload/' . $fichier['name']);
 
-                // Enregistrement des informations sur le fichier dans un tableau
-                $fileInfo = array(
-                    'id' => uniqid(),
-                    'name' => $fichier['name'],
-                    'size' => $fichier['size'],
-                    'type' => $fichier['type'],
-                    'proprietaire' => $_SESSION['identifiant']
-                );
-                // Récupération des données existantes du fichier JSON
-                $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);
+                        // Enregistrement des informations sur le fichier dans un tableau
+                        $fileInfo = array(
+                            'id' => uniqid(),
+                            'name' => $fichier['name'],
+                            'size' => $fichier['size'],
+                            'type' => $fichier['type'],
+                            'proprietaire' => $_SESSION['identifiant'],
+                            'emailPartage' => $emailPartager,
+                            'nombreTelechargement' => $nombreTelechargement
+                        );
+                        // Récupération des données existantes du fichier JSON
+                        $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);
 
-                // Ajout des nouvelles informations sur le fichier
-                $existingData[] = $fileInfo;
+                        // Ajout des nouvelles informations sur le fichier
+                        $existingData[] = $fileInfo;
 
-                // Écriture des données mises à jour dans le fichier JSON
-                file_put_contents('../data/dataFichiers.json', json_encode($existingData));
+                        // Écriture des données mises à jour dans le fichier JSON
+                        file_put_contents('../data/dataFichiers.json', json_encode($existingData));
 
-                header("Location: fichiers.php");
+                        header("Location: fichiers.php");
 
-                exit();
+                        exit();
+                    } else {
+                        $erreur = "Le fichier est trop volumineux";
+                    }
+                } else {
+                    $erreur = "Le fichier ne doit pas contenir de php";
+                }
             } else {
-                $erreur = "Le fichier est trop volumineux";
+                $erreur = "le fichier ne doit pas etre un .php";
             }
         } else {
-            $erreur = "Le fichier ne doit pas contenir de php";
+            $erreur = "Une erreur est survenue";
         }
-    } else {
-        $erreur = "le fichier ne doit pas etre un .php";
     }
-} else {
-    $erreur = "Une erreur est survenue";
-}
-}
 }
