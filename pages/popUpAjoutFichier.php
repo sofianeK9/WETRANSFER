@@ -1,48 +1,6 @@
 <?php
 
-$erreur = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-$fichier = $_FILES['fichierUpload'];
-
-/* var_dump($fichier); */
-
-// si il n'y a pas d'erreur :
-if($fichier['error'] == UPLOAD_ERR_OK) {
-    // on recupere l'extension
-    $partie = explode('.', $fichier['name']);
-    $extension = $partie[1];
-    // on verifie que l'extension n'est pas du .php
-    if($extension != 'php') {
-        // on ouvre le fichier
-        $finfo = finfo_open(FILEINFO_MIME);
-        // on recupere le type du fichier (pour verifier le contenu du fichier)
-        $info = finfo_file($finfo, $fichier['tmp_name']);
-
-        // si le fichier ne contient pas de php :
-        if(!str_contains($info, 'text/x-php')) {
-            // on recupere la taille du fichier
-            $taille = filesize($fichier['tmp_name']);
-
-            // si la taille ne depasse pas 20Mo :
-            if($taille < 20480) {
-                // on enregistre le fichier dans le dossier choisi
-                move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/ExoPhp/WETRANSFER/fichiersUpload/' . $fichier['name']);
-            } else {
-                $erreur = "Le fichier est trop volumineux";
-            }
-        } else {
-            $erreur = "Le fichier ne doit pas contenir de php";
-        }
-    } else {
-        $erreur = "le fichier ne doit pas etre un .php";
-    }
-} else {
-    $erreur = "Une erreur est survenue";
-}
-}
-
+/* } */
 ?>
 
 <!DOCTYPE html>
@@ -82,3 +40,17 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
     </div>
 </body>
 </html>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        fetch('popUpAjoutFichier.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => console.log(data)) // Gérer la réponse JSON du serveur si nécessaire
+        .catch(error => console.error('Erreur :', error));
+    });
+</script>

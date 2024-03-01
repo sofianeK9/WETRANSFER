@@ -14,9 +14,9 @@ $partage = false;
 <body>
     <div class="container">
         <h1>Détails du fichier</h1>
-        <h2 class="detail">Nom du fichier : </h2><!--  <?php echo $name ?> -->
-        <h2 class="detail">Propriétaire du fichier : </h2> <!-- <?php echo $owner ?> -->
-        <h2 class="detail">Nombres de telechargements : </h2> <!-- <?php echo $downloads ?> -->
+        <h2 class="detail">Nom du fichier : </h2>
+        <h2 class="detail">Taille du fichier </h2>
+        <h2 class="detail">Nombres de telechargements : </h2>
 
     <?php if($partage): ?>
         <h2>Partagé avec :</h2>

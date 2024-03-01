@@ -1,4 +1,4 @@
-<?php 
+<?php require_once '../fonctions/fonctions.php';
 //session_start();
 //if (!isset($_SESSION["connecte"])){
     //header:('Location: ../pages/connexion.php');
@@ -9,6 +9,11 @@ $fichiers = array_diff($fichiers, array('.', '..'));
 //problème j'ai tous les fichiers
 //faire une variable avec QUE mes fichiers pr tableau 1 -> propriétaire = id de celui connecté
 //faire une variable avec fichiers dont je suis la cible pr tableau 2 -> cible = id de celui connecté
+
+
+$erreur = "";
+upload()
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,5 +138,7 @@ $fichiers = array_diff($fichiers, array('.', '..'));
             <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
     </div>
+
 </body>
 </html>
+
