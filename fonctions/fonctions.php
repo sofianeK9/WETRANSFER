@@ -80,7 +80,7 @@ function upload()
         $fichier = $_FILES['fichierUpload'];
 
         
-        $emailPartager = filter_input(INPUT_POST, "emailPartage");
+        $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
         $dataFichiers = fopen('dataFichiers.json', "a");
         fwrite($dataFichiers, "$emailPartager\n");
         fclose($dataFichiers);
