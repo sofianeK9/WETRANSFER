@@ -104,6 +104,7 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
 
                 // Enregistrement des informations sur le fichier dans un tableau
                 $fileInfo = array(
+                    'id' => uniqid(),
                     'name' => $fichier['name'],
                     'size' => $fichier['size'],
                     'type' => $fichier['type']

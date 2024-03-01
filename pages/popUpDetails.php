@@ -1,5 +1,7 @@
 <?php
 $partage = false;
+
+
 ?>
 
 <!DOCTYPE html>
