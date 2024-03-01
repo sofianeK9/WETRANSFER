@@ -5,11 +5,20 @@ function inscription()
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $identifiant = filter_input(INPUT_POST, "identifiant");
+        $identifiant = filter_input(INPUT_POST, "identifiant", FILTER_VALIDATE_EMAIL);
         $motDePasse = filter_input(INPUT_POST, "motDePasse");
         $confirmationmotDePasse = filter_input(INPUT_POST, "confirmationmotDePasse");
         $motDePasseHascher = password_hash($confirmationmotDePasse, PASSWORD_DEFAULT);
 
+      $fichier = file("identifiants.txt");
+      foreach($fichier as $ligne) {
+        $infos = explode(",", $ligne);
+        if($infos[0] == $identifiant) {
+            echo "Cet e-mai existe déjà, veuillez en choisir un autre.";
+            return;
+        }
+
+      }
 
         if ($identifiant != "" &&  $motDePasse != "" && $confirmationmotDePasse != "" && $motDePasse === $confirmationmotDePasse) {
             $donnees = fopen("identifiants.txt", "a");
