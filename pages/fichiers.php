@@ -17,7 +17,8 @@ $fichiers = array_diff($fichiers, array('.', '..'));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/fichiers.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    
+    <script src="../fonctions/fonctionsJavascript.js"></script>
+
     <title>Liste des fichiers</title>
 </head>
 <header>
@@ -134,21 +135,3 @@ $fichiers = array_diff($fichiers, array('.', '..'));
     </div>
 </body>
 </html>
-    <!-- ----------------------------------------------------------------
-                             FONCTION JAVASCRIPT 
-    --------------------------------------------------------------------->
-<script>
-    //afficher le pop up sélectionné
-    function ouvrirModal(idModal) {
-    // Récupérer le modal
-    var modal = document.getElementById(idModal);
-    // Récupérer le contain
-    var contain = document.getElementById('contain');
-    // ajouter le filtre sur le contain
-    contain.classList.add('overlay');
-    // afficher le modal
-    modal.classList.remove('hidden');
-}
-
-
-</script>
