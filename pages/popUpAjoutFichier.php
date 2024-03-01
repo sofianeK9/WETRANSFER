@@ -18,6 +18,8 @@
             <form method="POST" enctype="multipart/form-data">
                 <label for="fichierUpload">Choisir un fichier</label>
                 <input type="file" name="fichierUpload">
+                <label for="emailPartage">Partagé avec :</label>
+                <input class="emailPartage" type="emailPartage" name="emailPartage">
                 <input class="btn btnAjoutFichier" type="submit" value="Envoyer le fichier">
             </form>
         </div>
@@ -29,12 +31,6 @@
             <p class="success"> Le fichier <span><?= $fichier['name'] ?></span> a bien été envoyé</p>
             <?php endif; ?>
         <?php endif; ?>
-
-        <div>
-            <h2 class="detail">Partager le fichier avec :</h2>
-            <input class="emailPartage" type="email">
-            <button class="btn btnPartage">Partager</button>
-        </div>
         <a onclick="fermerModal('modalAjout')" class="btnClose">X</a>
     </div>
 </body>
