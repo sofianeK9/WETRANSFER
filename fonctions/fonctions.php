@@ -108,7 +108,8 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
                     'id' => uniqid(),
                     'name' => $fichier['name'],
                     'size' => $fichier['size'],
-                    'type' => $fichier['type']
+                    'type' => $fichier['type'],
+                    'proprietaire' => $_SESSION['identifiant']
                 );
                 // Récupération des données existantes du fichier JSON
                 $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);

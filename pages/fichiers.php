@@ -10,15 +10,15 @@ if (!isset($_SESSION["connecte"])) {
 //$fichiers = scandir($fichiersUpload);
 //$fichiers = array_diff($fichiers, array('.', '..'));
 //récupérer le tableau avec les données des fichiers
-$fichiersData = file_get_contents('../data/fichiersData.json');
-$fichiersDatas = json_decode($fichiersData, true);
+$dataFichier = file_get_contents('../data/dataFichiers.json');
+$dataFichiers = json_decode($dataFichier, true);
 //créer des tableaux vides pour remplir le tableau 1 et 2
 $mesFichiers = [];
 $fichiersPartages = [];
 //remplir les tableaux précédents selon la liste des données de fichiers
-foreach ($fichiersDatas as $f) {
+foreach ($dataFichiers as $f) {
     //si des fichiers ont pour propriétaire l'identifiant de la personne connectée
-    if ($f["emailPartage"] == $_SESSION["identifiant"]) {
+    if ($f["proprietaire"] == $_SESSION["identifiant"]) {
         $mesFichiers[] = $f;
     //si des fichiers ont pour cible l'identifiant de la personne connectée
     } elseif ($f["emailPartage"] == $_SESSION["identifiant"]) {
@@ -70,7 +70,7 @@ upload();
                 </thead>
                 <tbody>
                     <!-- boucle sur chacun de mes fichiers -->
-                    <?php foreach ($fichiers as $f) : ?>
+                    <?php foreach ($mesFichiers as $f) : ?>
                         <tr>
                             <td><?= $f ?></td>
                             <!-- ajout fonction JS pour delete au niveau de la popup de confirmation? -->
