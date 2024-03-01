@@ -83,3 +83,7 @@ span:hover, a:hover{
 .hidden {
   display: none;
 }
+
+.overlay {
+  filter: blur(5px);
+}

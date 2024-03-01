@@ -1,5 +1,5 @@
 .container {
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(228 240 245);
     width: 500px;
     padding: 10px;
     padding-top: 30px;
@@ -50,22 +50,6 @@ h1 {
     transition : 0.3s;
 }
 
-.btnClose {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 20px;
-    margin: 10px;
-    color: black;
-    padding: 5px;
-    transition: 0.3s;
-}
-
-.btnClose:hover {
-    transform: scale(1.5);
-    transition: 0.5s;
-}
-
 .btnAjoutFichier {
     margin-top: 10px;
 }
@@ -85,4 +69,21 @@ h1 {
 span {
     font-weight: bold;
     color: rgb(1, 117, 1);
+}
+
+.btnClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    margin: 10px;
+    color: black;
+    padding: 5px;
+    transition: 0.3s;
+    z-index: 1000;
+  }
+  
+.btnClose:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
 }

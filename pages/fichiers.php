@@ -31,70 +31,72 @@ $fichiers = array_diff($fichiers, array('.', '..'));
         </nav>
 </header>
 <body>
-    <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')" >Ajouter un fichier</a>
-    <!-- tableau de mes fichiers -->
-    <h2 id="mesFichiers">Mes fichiers</h2>
-    <!-- si j'ai des fichiers, le tableau s'affiche -->
-    <?php if (!empty($fichiers)): ?>
-    <table>
-    <thead>
-        <tr>
-            <th>Nom du fichier</th>
-            <th>Supprimer</th>
-            <th>Retélécharger</th>
-            <th>Détails</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- boucle sur chacun de mes fichiers -->
-    <?php foreach($fichiers as $f): ?>
-        <tr>
-            <td><?= $f ?></td>
-            <!-- ajout fonction JS pour delete : créer une popup de confirmation? -->
-            <td><span onclick="ouvrirModal('modalDelete')" class="material-symbols-outlined">delete</span></td>
-            <!-- ajout fonction JS pour download : créer une popup de confirmation? -->
-            <td><span class="material-symbols-outlined">download</span></td>
-            <td><a class="btn" onclick="ouvrirModal('modalDetails')">Détails</a></td>
-        </tr>
-        <?php endforeach ?>
-    </tbody>
-    </table>
-    <!-- si je n'ai pas de fichier, pas de tableau, j'informe par un message -->
-    <?php else: ?>
-    <p>Aucun fichier disponible</p>
-    <?php endif ?>
-    <!-- tableau des fichiers qui me sont partagés -->
-    <h2 id="fichiersPartages">Fichiers partagés</h2>
-    <!-- s'il y a des fichiers, le tableau s'affiche -->
-    <?php //if (): ?>
-    <table>
-    <thead>
-        <tr>
-            <th>Nom du fichier</th>
-            <th>Supprimer</th>
-            <th>Télécharger</th>
-        </tr>
-    </thead>
-    <tbody>
-    <!-- boucle sur chacun des fichiers -->
-    <?php //foreach ?>
-        <tr>
-            <td>dggf</td>
-            <td><span class="material-symbols-outlined">delete</span></td>
-            <td><span class="material-symbols-outlined">download</span></td>
-        </tr>
-        <tr>
-            <td>dggf</td>
-            <td><span class="material-symbols-outlined">delete</span></td>
-            <td><span class="material-symbols-outlined">download</span></td>
-        </tr>
-    <?php //endforeach ?>
-    </tbody>
-    </table>
-    <!-- s'il n'y a pas de fichier, pas de tableau, j'informe par un message -->
-    <?php //else: ?>
-    <p>Aucun fichier disponible</p>
-    <?php //endif ?>
+    <div id="contain">
+        <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')" >Ajouter un fichier</a>
+        <!-- tableau de mes fichiers -->
+        <h2 id="mesFichiers">Mes fichiers</h2>
+        <!-- si j'ai des fichiers, le tableau s'affiche -->
+        <?php if (!empty($fichiers)): ?>
+        <table>
+        <thead>
+            <tr>
+                <th>Nom du fichier</th>
+                <th>Supprimer</th>
+                <th>Retélécharger</th>
+                <th>Détails</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- boucle sur chacun de mes fichiers -->
+        <?php foreach($fichiers as $f): ?>
+            <tr>
+                <td><?= $f ?></td>
+                <!-- ajout fonction JS pour delete : créer une popup de confirmation? -->
+                <td><span onclick="ouvrirModal('modalDelete')" class="material-symbols-outlined">delete</span></td>
+                <!-- ajout fonction JS pour download : créer une popup de confirmation? -->
+                <td><span class="material-symbols-outlined">download</span></td>
+                <td><a class="btn" onclick="ouvrirModal('modalDetails')">Détails</a></td>
+            </tr>
+            <?php endforeach ?>
+        </tbody>
+        </table>
+        <!-- si je n'ai pas de fichier, pas de tableau, j'informe par un message -->
+        <?php else: ?>
+        <p>Aucun fichier disponible</p>
+        <?php endif ?>
+        <!-- tableau des fichiers qui me sont partagés -->
+        <h2 id="fichiersPartages">Fichiers partagés</h2>
+        <!-- s'il y a des fichiers, le tableau s'affiche -->
+        <?php //if (): ?>
+        <table>
+        <thead>
+            <tr>
+                <th>Nom du fichier</th>
+                <th>Supprimer</th>
+                <th>Télécharger</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!-- boucle sur chacun des fichiers -->
+        <?php //foreach ?>
+            <tr>
+                <td>dggf</td>
+                <td><span class="material-symbols-outlined">delete</span></td>
+                <td><span class="material-symbols-outlined">download</span></td>
+            </tr>
+            <tr>
+                <td>dggf</td>
+                <td><span class="material-symbols-outlined">delete</span></td>
+                <td><span class="material-symbols-outlined">download</span></td>
+            </tr>
+        <?php //endforeach ?>
+        </tbody>
+        </table>
+        <!-- s'il n'y a pas de fichier, pas de tableau, j'informe par un message -->
+        <?php //else: ?>
+        <p>Aucun fichier disponible</p>
+        <?php //endif ?>
+    </div>
     <!-- ----------------------------------------------------------------
                                     POP UPS 
     --------------------------------------------------------------------->
@@ -140,7 +142,13 @@ $fichiers = array_diff($fichiers, array('.', '..'));
     function ouvrirModal(idModal) {
     // Récupérer le modal
     var modal = document.getElementById(idModal);
+    // Récupérer le contain
+    var contain = document.getElementById('contain');
+    // ajouter le filtre sur le contain
+    contain.classList.add('overlay');
     // afficher le modal
     modal.classList.remove('hidden');
 }
+
+
 </script>

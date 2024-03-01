@@ -27,8 +27,21 @@ $partage = false;
             <button class="btn">Partager</button>
         </div>
     <?php endif; ?>
-         
-        <a href="fichiers.php" class="btnClose">X</a>
+    <a onclick="fermerModal('modalDetails')" class="btnClose">X</a>
     </div>
 </body>
 </html>
+
+<script>
+    //fermer le pop up
+    function fermerModal(idModal) {
+    // Récupérer le modal
+    var modal = document.getElementById(idModal);
+    // Récupérer le contain
+    var contain = document.getElementById('contain');
+    // supprimer le filtre sur le contain
+    contain.classList.remove('overlay');
+    // supprimer le modal
+    modal.classList.add('hidden');
+    }
+</script>
