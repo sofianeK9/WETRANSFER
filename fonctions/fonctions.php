@@ -81,7 +81,7 @@ function upload()
 
         
         $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
-        $dataFichiers = fopen('dataFichiers.json', "a");
+        $dataFichiers = fopen('../data/dataFichiers.json', "a");
         fwrite($dataFichiers, "$emailPartager\n");
         fclose($dataFichiers);
         $nombreTelechargement = 0;
