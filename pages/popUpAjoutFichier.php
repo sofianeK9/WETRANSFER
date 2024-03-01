@@ -77,7 +77,22 @@ if($fichier['error'] == UPLOAD_ERR_OK) {
             <input class="emailPartage" type="email">
             <button class="btn btnPartage">Partager</button>
         </div>
-        <a href="fichiers.php" class="btnClose">X</a>
+        <a onclick="fermerModal('modalAjout')" class="btnClose">X</a>
     </div>
 </body>
 </html>
+
+<script>
+    //fermer le pop up
+    function fermerModal(idModal) {
+    // Récupérer le modal
+    var modal = document.getElementById(idModal);
+    // Récupérer le contain
+    var contain = document.getElementById('contain');
+    // supprimer le filtre sur le contain
+    contain.classList.remove('overlay');
+    // supprimer le modal
+    modal.classList.add('hidden');
+    }
+    
+</script>
