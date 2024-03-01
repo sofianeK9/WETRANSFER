@@ -54,8 +54,8 @@ upload();
 </header>
 
 <body>
-    <h2>Bonjour <?= $_SESSION["identifiant"] ?></h2>
     <div id="contain">
+        <h2>Bonjour <?= $_SESSION["identifiant"] ?></h2>
         <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')">Ajouter un fichier</a>
         <!-- tableau de mes fichiers -->
         <h2 id="mesFichiers">Mes fichiers</h2>
