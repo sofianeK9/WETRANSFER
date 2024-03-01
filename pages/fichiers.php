@@ -2,8 +2,7 @@
 require_once '../fonctions/fonctions.php';
 session_start();
 if (!isset($_SESSION["connecte"])) {
-    header:
-    ('Location: ../pages/connexion.php');
+    header('Location: ../pages/connexion.php');
     exit();
 }
 //$fichiersUpload = '../fichiersUpload';
