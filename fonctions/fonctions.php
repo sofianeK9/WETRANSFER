@@ -56,6 +56,7 @@ function connexion()
                 $identifiants = explode(",", $ligne);
                 if ($identifieur == $identifiants[0] && password_verify($mdp, trim($identifiants[1]))) {
                     $_SESSION["connecte"] = true;
+                    $_SESSION["identifiant"] = $identifieur;
                     header("Location: /WETRANSFER/pages/fichiers.php");
                     exit();
                 }
