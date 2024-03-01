@@ -130,7 +130,7 @@ $fichiers = array_diff($fichiers, array('.', '..'));
             <h1>Suppression du fichier</h1>
             <h2 class="detail">Etes-vous certain de vouloir supprimer le fichier <?= $f ?> ? </h2>
             <button class="btn btnDelete">Oui</button>
-            <a href="fichiers.php" class="btnClose">X</a>
+            <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
     </div>
 </body>
