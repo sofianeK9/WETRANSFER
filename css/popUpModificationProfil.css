@@ -1,3 +1,17 @@
+.container {
+    background-color: rgb(228 240 245);
+    width: 500px;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    border: 1px solid black;
+    border-radius: 25px;
+    box-shadow:rgb(24, 24, 24) 0px 5px 15px;
+}
+
 .form_modif_iden {
     display: flex;
     width: 25vw;
@@ -12,3 +26,15 @@
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+.btnClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    margin: 10px;
+    color: black;
+    padding: 5px;
+    transition: 0.3s;
+    z-index: 1000;
+  }
