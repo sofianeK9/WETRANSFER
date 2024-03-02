@@ -17,6 +17,8 @@ function changementIdentifiant($ancienEmail, $email) {
                 // On ecrit le nouveau contenu dans le fichier identifiants
                 if (file_put_contents('../pages/identifiants.txt', $fichier) === false) {
                     return false;
+                } else {
+                    return true;
                 }
             } else {
                 // Si l'email est déjà utilisé, on renvoie false
@@ -24,6 +26,6 @@ function changementIdentifiant($ancienEmail, $email) {
             }
         }
     }
-    // Si le remplacement est fait, on renvoie true
-    return true;
+    
+
 }

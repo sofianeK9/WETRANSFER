@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //suivant le retour de la fonction, on paramètre le message approprié
     if ($retourChangement) {
+
         $changement = "L'identifiant a bien été modifié.";
     } else {
         $changement = "L'identifiant n'a pas pu être modifié.";
