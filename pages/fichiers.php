@@ -26,8 +26,8 @@ if ($dataFichiers != null){
         }
     }
 }
-$erreur = "";
-upload();
+
+$erreur = upload();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +56,11 @@ upload();
     <div id="contain">
         <h2>Bonjour <?= $_SESSION["identifiant"] ?></h2>
         <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')">Ajouter un fichier</a>
+
+        <?php if($erreur !== ""): ?>
+            <p class="erreur"><?= $erreur ?></p>
+        <?php endif; ?>
+
         <!-- tableau de mes fichiers -->
         <h2 id="mesFichiers">Mes fichiers</h2>
         <!-- si j'ai des fichiers, le tableau s'affiche -->
