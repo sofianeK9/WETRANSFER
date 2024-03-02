@@ -12,3 +12,4 @@ emma@test.com,$2y$10$V9K1P1RJEo1XCF1Si3LZVuxi4F1Jo9ujyIfm5e.LLnG3GVFTC7rOi
 soso@test.com,$2y$10$DMG8lqClMz3QEfIXYf5NN.tqGKOQWMflvNiPeYkMuEO8ZyaxzWJR6
 777@test.com,$2y$10$oehykDYwNXHVrlHFYzB2ruCnhf5VjUUnoDBCczcIp9ZyAOnEdlBaW
 999@test.com,$2y$10$OgMObl3ZPBrV4UbOGDsRROBU4Msw.xZDdNvqATSPkXLWQRtfEARAm
+salazar@gmail.com,$2y$10$mSY51B4q2.QdypZrVVVnZOQAs94Pj8eJKyf39kSxdvodamHiMdsU6
