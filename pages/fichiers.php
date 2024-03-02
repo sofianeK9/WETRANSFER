@@ -80,7 +80,7 @@ $erreur = upload();
                                 <form method="POST">
                                     <input class="hidden" type="text" value=<?= $f['name']?> name="name">
                                     <input class="emailPartage" type="email" name="emailPartage">
-                                    <button class="btn" type="submit">Partager</button>
+                                    <button class="btn" type="submit" action="../fonctions/emailPartage.php" value="Partager">Partager</button>
                                 </form>
                              <?php endif ?></td>
                         </tr>
@@ -111,7 +111,7 @@ $erreur = upload();
                         <td><?= $f['name'] ?></td>
                         <td><?= $f['size'] ?> octets</td>
                         <!-- ajout fonction JS pour delete au niveau de la popup de confirmation -->
-                        <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
+                        <td><span onclick="ouvrirModal('modalDeletePartage', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                         <!-- ajout fonction JS pour download -->
                         <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
                     </tr>
@@ -134,6 +134,14 @@ $erreur = upload();
     </div>
     <!--Popup de confirmation de suppression-->
     <div id="modalDelete" class="modal hidden">
+        <div class="container">
+            <h1>Suppression du fichier</h1>
+            <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
+            <button class="btn btnDelete" >Oui</button>
+            <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
+        </div>
+    </div>
+    <div id="modalDeletePartage" class="modal hidden">
         <div class="container">
             <h1>Suppression du fichier</h1>
             <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
