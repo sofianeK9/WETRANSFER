@@ -21,7 +21,7 @@ connexion();
                 <input id="identifieur" name="identifieur" type="text">
 
                 <label id="motDePasse" name="motDePasse" for="motDePasse">Mot de passe</label>
-                <input id="motDePasse" name="motDePasse" type="text">
+                <input id="motDePasse" name="motDePasse" type="password">
 
                 <input id="submit" type="submit" value="connexion">
                 <a href="/WETRANSFER/pages/inscription.php">Inscrivez-vous !</a>
