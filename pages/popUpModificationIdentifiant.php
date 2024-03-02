@@ -1,9 +1,11 @@
 <?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des informations du formulaire ( ancien email, nouvel email )
     $ancienEmail = filter_input(INPUT_POST, "ancienEmail");
     $email = filter_input(INPUT_POST, "email");
-
+    
+}
     // Appel de la fonction de changement de l'identifiant
     require_once '../fonctions/changementIdentifiant.php';
     $retourChangement = changementIdentifiant($ancienEmail, $email);
@@ -14,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $changement = "L'identifiant n'a pas pu être modifié.";
     }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input type="submit" value="Valider">
         </form>
-        <!-- Affichage du message du ré -->
+        <!-- Affichage du message du résultat -->
         <?php if ($retourChangement); ?>
         <p><?php echo $changement ?></p>
         <a onclick="fermerModal('modalModifIdentifiant')" class="btnClose">X</a>
