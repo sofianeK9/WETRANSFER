@@ -9,7 +9,7 @@ function ouvrirModal(idModal, detailName, detailSize, detailChargement, detailPa
     // Si le modal est la modalDelete, mettre à jour le texte avec le nom du fichier à supprimer
     if (idModal === 'modalDelete') {
     var fileToDelete = document.getElementById('fileToDelete');
-    fileToDelete.textContent = "Etes-vous certain de vouloir supprimer le fichier " + fileName + " ?";
+    fileToDelete.textContent = "Etes-vous certain de vouloir supprimer le fichier " + detailName + " ?";
     }
     // Si le modal est la modalDetails, mettre à jour le texte avec les détails du fichier(emailPartage s'il existe)
     if (idModal === 'modalDetails') {

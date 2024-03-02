@@ -106,7 +106,7 @@ upload();
                     <tr>
                         <td><?= $f['name'] ?></td>
                         <!-- ajout fonction JS pour delete au niveau de la popup de confirmation -->
-                        <td><span onclick="ouvrirModal('modalDelete')" class="material-symbols-outlined">delete</span></td>
+                        <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                         <!-- ajout fonction JS pour download -->
                         <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
                     </tr>
@@ -148,7 +148,7 @@ upload();
     <div id="modalDelete" class="modal hidden">
         <div class="container">
             <h1>Suppression du fichier</h1>
-            <h2 class="detail">Etes-vous certain de vouloir supprimer le fichier <?= $f['name'] ?> ? </h2>
+            <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
             <button class="btn btnDelete" >Oui</button>
             <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
