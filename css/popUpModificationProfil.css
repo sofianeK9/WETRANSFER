@@ -12,10 +12,10 @@
     box-shadow:rgb(24, 24, 24) 0px 5px 15px;
 }
 
-.form_modif_iden {
+.form_modif {
     display: flex;
     width: 25vw;
-    height: 20vh;
+    height: 30vh;
     border: 1px solid #000000;
     flex-direction: column;
     justify-content: space-evenly;
