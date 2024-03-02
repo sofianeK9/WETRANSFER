@@ -1,0 +1,64 @@
+.navBarProfil {
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(51, 50, 50);
+    display: flex;
+    justify-content: end;
+
+}
+
+.liens {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+}
+
+.liens a {
+    color: white;
+    text-decoration: none;
+
+
+}
+
+.titre {
+    text-align: center;
+    width: 100vw;
+    height: 10vh;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.boxModification {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 80vh;
+    justify-content: space-evenly;
+}
+
+.container {
+    background-color: rgb(228 240 245);
+    width: 40vw;
+    height: 50vh;
+    border: 1px solid black;
+    border-radius: 25px;
+    box-shadow: rgb(24, 24, 24) 0px 5px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_modif {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
