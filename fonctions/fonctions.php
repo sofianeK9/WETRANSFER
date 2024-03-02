@@ -109,7 +109,7 @@ function upload()
                     // si la taille ne depasse pas 20Mo :
                     if ($taille < 2000480) {
                         // on enregistre le fichier dans le dossier choisi
-                        move_uploaded_file($fichier['tmp_name'], 'C:/wamp64/www/WETRANSFER/fichiersUpload/' . $fichier['name']);
+                        move_uploaded_file($fichier['tmp_name'], '../fichiersUpload/' . $fichier['name']);
 
                         // Enregistrement des informations sur le fichier dans un tableau
                         $fileInfo = array(
