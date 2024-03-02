@@ -20,6 +20,7 @@ function changementIdentifiant($ancienEmail, $email) {
                     return false;
                 } else {
                     // Si tout est bon, on renvoie true
+                    $_SESSION["identifiant"] = $email;
                     $retour = "L'identifiant a bien été modifié.";
                     return [true, $retour];
                 }

@@ -1,5 +1,7 @@
 <?php
-$user = $_SESSION['identifiant'];
+
+session_start();
+
 
 ?>
 
@@ -13,25 +15,21 @@ $user = $_SESSION['identifiant'];
     <title>Modification du profil</title>
 </head>
 
-<body>
-    <nav class="navBarProfil">
-        <div class="liens">
-            <a href="../pages/fichiers.php">Mes fichiers</a>
-            <a href="../pages/profil.php"><?php $user ?></a>
-            <a href="../pages/deconnexion.php">Se déconnecter</a>
-        </div>
-    </nav>
+
+<?php include '../composants/header.php'; ?>
+<main>
     <h1 class="titre">Modification du profil</h1>
+    <div classe="boxMessage">
+
+        <?php if ($message) : ?>
+            <p><?php echo $message ?></p>
+        <?php endif; ?>
+    </div>
     <div class="boxModification">
         <?php include '../composants/modificationIdentifiant.php'; ?>
         <?php include '../composants/modificationMdp.php'; ?>
     </div>
-    <div>
-        <!-- Affichage du message du résultat -->
-        <?php if ($message) : ?>
-            <p><?php $message ?></p>
-        <?php endif; ?>
-    </div>
+</main>
 </body>
 
 </html>

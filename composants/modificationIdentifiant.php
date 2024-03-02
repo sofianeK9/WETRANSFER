@@ -15,11 +15,8 @@ if ($ancienEmail != $email) {
     $retourChangement = false;
     $message = "Les deux emails sont identiques. Veuillez en choisir un autre.";
 }
+var_export($message,true);
 
-//suivant le retour de la fonction, on paramètre le message approprié
-if ($retourChangement) {
-    $changement = $message;
-} 
 ?>
 
 <div class="container">
