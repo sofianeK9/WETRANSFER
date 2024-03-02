@@ -1,8 +1,8 @@
 <header>
     <!-- barre de navigation -->
     <nav class="navbar">
-        <a href="#mesFichiers">Mes fichiers</a>
-        <a href="#fichiersPartages">Fichiers partagés</a>
+        <a href="../pages/fichiers.php">Mes fichiers</a>
+        <a href="../pages/fichiers.php#fichiersPartages">Fichiers partagés</a>
         <a href="../pages/profil.php">Profil</a>
         <a href="../pages/deconnexion.php">Se déconnecter</a>
     </nav>
