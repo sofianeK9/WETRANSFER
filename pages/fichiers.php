@@ -21,7 +21,7 @@ if ($dataFichiers != null){
         if ($f["proprietaire"] == $_SESSION["identifiant"]) {
             $mesFichiers[] = $f;
         //si des fichiers ont pour cible l'identifiant de la personne connectée
-        } elseif ($f["emailPartage"] == $_SESSION["identifiant"]) {
+        } if ($f["emailPartage"] == $_SESSION["identifiant"]) {
             $fichiersPartages[] = $f;
         }
     }
@@ -75,11 +75,11 @@ upload();
                         <tr>
                             <td><?= $f['name'] ?></td>
                             <!-- ajout fonction JS pour delete au niveau de la popup de confirmation? -->
-                            <td><span onclick="ouvrirModal('modalDelete')" class="material-symbols-outlined">delete</span></td>
+                            <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                             <!-- ajout fonction JS pour download -->
-                            <td><a <?php //readfile($f) ou file_get_contents($f) 
-                                    ?> href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
-                            <td><a class="btn" onclick="ouvrirModal('modalDetails')">Détails</a></td>
+                            <td>
+                                <a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
+                            <td><a class="btn" onclick="ouvrirModal('modalDetails', '<?= $f['name'] ?>', '<?= $f['size'] ?>', '<?= $f['nombreTelechargement'] ?>','<?= $f['emailPartage'] ?>')">Détails</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -149,7 +149,7 @@ upload();
         <div class="container">
             <h1>Suppression du fichier</h1>
             <h2 class="detail">Etes-vous certain de vouloir supprimer le fichier <?= $f['name'] ?> ? </h2>
-            <button class="btn btnDelete">Oui</button>
+            <button class="btn btnDelete" >Oui</button>
             <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
     </div>

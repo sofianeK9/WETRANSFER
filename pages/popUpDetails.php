@@ -15,20 +15,20 @@ $partage = false;
 <body>
     <div class="container">
         <h1>Détails du fichier</h1>
-        <h2 class="detail">Nom du fichier : <?= $f['name'] ?> </h2>
-        <h2 class="detail">Taille du fichier : <?= $f['size'] ?> </h2>
-        <!-- <h2 class="detail">Nombres de telechargements : </h2> -->
+        <h2 id="detailName" class="detail">Nom du fichier :  </h2>
+        <h2 id="detailSize" class="detail">Taille du fichier :  </h2>
+        <h2 id="detailChargement" class="detail">Nombre de telechargements : </h2> 
 
-    <?php if($partage): ?>
-        <h2>Partagé avec :</h2>
+    <?php //if($partage): ?>
+        <h2 id="detailPartage" class="detail">Partagé avec :</h2>
 
-    <?php else: ?>
-        <div>
-            <h2 class="detail">A partagé avec :</h2>
+    <?php //else: ?>
+        <div id="detailAPartager">
+            <h2 class="detail">A partager avec :</h2>
             <input class="emailPartage" type="email">
             <button class="btn">Partager</button>
         </div>
-    <?php endif; ?>
+    <?php //endif; ?>
     <a onclick="fermerModal('modalDetails')" class="btnClose">X</a>
     </div>
 
