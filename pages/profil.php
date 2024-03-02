@@ -1,5 +1,5 @@
 <?php
-
+$user = $_SESSION['identifiant'];
 
 ?>
 
@@ -17,6 +17,7 @@
     <nav class="navBarProfil">
         <div class="liens">
             <a href="../pages/fichiers.php">Mes fichiers</a>
+            <a href="../pages/profil.php"><?php $user ?></a>
             <a href="../pages/deconnexion.php">Se déconnecter</a>
         </div>
     </nav>

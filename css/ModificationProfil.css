@@ -11,14 +11,19 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 30%;
+    width: 40%;
 }
 
 .liens a {
     color: white;
     text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 
-
+.liens a:hover {
+    background-color: #555;
+    /* Changement de couleur au survol */
 }
 
 .titre {
