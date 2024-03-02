@@ -84,7 +84,7 @@ function upload()
 
         
         $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
-        $dataFichiers = fopen('../data/dataFichiers.json', "w");
+        $dataFichiers = fopen('../data/dataFichiers.json', "a");
         fwrite($dataFichiers, "$emailPartager\n");
         fclose($dataFichiers);
         $nombreTelechargement = 0;
@@ -111,6 +111,8 @@ function upload()
                         // on enregistre le fichier dans le dossier choisi
                         move_uploaded_file($fichier['tmp_name'], '../fichiersUpload/' . $fichier['name']);
 
+                        $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
+                       
                         // Enregistrement des informations sur le fichier dans un tableau
                         $fileInfo = array(
                             'id' => uniqid(),
