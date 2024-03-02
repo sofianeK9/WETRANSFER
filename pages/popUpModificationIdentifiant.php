@@ -1,14 +1,13 @@
 <?php
-
+$message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des informations du formulaire ( ancien email, nouvel email )
     $ancienEmail = filter_input(INPUT_POST, "ancienEmail");
     $email = filter_input(INPUT_POST, "email");
-    
-} 
+}
 //Si les deux emails sont différents
 if ($ancienEmail != $email) {
-    $erreur = "";
+
     // Appel de la fonction de changement de l'identifiant
     require_once '../fonctions/changementIdentifiant.php';
     list($retourChangement, $message) = changementIdentifiant($ancienEmail, $email);
@@ -17,12 +16,12 @@ if ($ancienEmail != $email) {
     $message = "Les deux emails sont identiques. Veuillez en choisir un autre.";
 }
 
-    //suivant le retour de la fonction, on paramètre le message approprié
-    if ($retourChangement) {
-        $changement = "L'identifiant a bien été modifié.";
-    } else {
-        $changement = $message;
-    }
+//suivant le retour de la fonction, on paramètre le message approprié
+if ($retourChangement) {
+    $changement = $message;
+} else {
+    $changement = $message;
+}
 
 ?>
 
@@ -50,9 +49,11 @@ if ($ancienEmail != $email) {
             <input type="submit" value="Valider">
         </form>
         <!-- Affichage du message du résultat -->
-        <?php if ($retourChangement); ?>
-        <p><?php echo $changement ?></p>
+        <?php if($message): ?>
+        <p><?php $message ?></p>
+        <?php endif; ?>
         <a onclick="fermerModal('modalModifIdentifiant')" class="btnClose">X</a>
+
     </div>
 
 </body>
