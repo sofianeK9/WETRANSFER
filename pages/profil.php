@@ -3,7 +3,6 @@
 session_start();
 
 if (isset($_POST['chgtEmail'])) {
-    var_dump($_POST);
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupération des informations du formulaire ( ancien email, nouvel email )
         $ancienEmail = filter_input(INPUT_POST, "ancienEmail");
