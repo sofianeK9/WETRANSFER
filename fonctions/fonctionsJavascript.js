@@ -1,5 +1,5 @@
 // fonction d'ouverture de la modal
-function ouvrirModal(idModal, detailName, detailSize, detailChargement, detailPartage) {
+function ouvrirModal(idModal, detailName) {
     // Récupérer le modal
     var modal = document.getElementById(idModal);
     // Récupérer le contain
@@ -10,25 +10,6 @@ function ouvrirModal(idModal, detailName, detailSize, detailChargement, detailPa
     if (idModal === 'modalDelete') {
     var fileToDelete = document.getElementById('fileToDelete');
     fileToDelete.textContent = "Etes-vous certain de vouloir supprimer le fichier " + detailName + " ?";
-    }
-    // Si le modal est la modalDetails, mettre à jour le texte avec les détails du fichier(emailPartage s'il existe)
-    if (idModal === 'modalDetails') {
-    var detailNameElement = document.getElementById('detailName');
-    var detailSizeElement = document.getElementById('detailSize');
-    var detailChargementElement = document.getElementById('detailChargement');
-    var detailPartageElement = document.getElementById('detailPartage');
-    var detailAPartagerElement = document.getElementById('detailAPartager');
-    detailNameElement.textContent = "Nom du fichier : " + detailName;
-    detailSizeElement.textContent = "Taille du fichier : " + detailSize + " octets";
-    detailChargementElement.textContent = "Ce fichier a été téléchargé : " + detailChargement + " fois";
-        //si emailPartage est défini
-        if (detailPartage != ""){
-            detailPartageElement.textContent = "Partagé avec : " + detailPartage;
-            detailPartageElement.classList.remove('hidden');
-            detailAPartagerElement.classList.add('hidden')
-        //si emailPartage n'est pas défini
-        }else{detailPartageElement.classList.add('hidden');
-        detailAPartagerElement.classList.remove('hidden')};
     }
     // afficher le modal
     modal.classList.remove('hidden');

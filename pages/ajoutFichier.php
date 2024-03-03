@@ -1,4 +1,6 @@
-<?php
+<?php require_once '../fonctions/fonctions.php';
+session_start();
+upload();
 
 ?>
 
@@ -24,7 +26,7 @@
             </form>
         </div>
         
-        <a onclick="fermerModal('modalAjout')" class="btnClose">X</a>
+        <a href="../pages/fichiers.php" class="btnClose">retour</a>
     </div>
 </body>
 </html>

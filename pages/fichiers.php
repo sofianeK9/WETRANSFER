@@ -26,7 +26,53 @@ if ($dataFichiers != null){
         }
     }
 }
-$erreur = upload();
+
+var_dump($mesFichiers);
+var_dump($f['name']);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Fonction de suppression d'un fichier
+    $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);
+    $nomFichier = filter_input(INPUT_POST, "name");
+
+        // Recherche du fichier dans les données existantes
+        foreach ($existingData as $fichier) {
+            if ($fichier["name"] == $nomFichier) {
+                // Suppression du fichier du tableau
+                unset($existingData[array_search($fichier, $existingData)]);
+                break;
+            }
+        }
+        // Enregistrement des données mises à jour dans le fichier JSON
+        file_put_contents('../data/dataFichiers.json', json_encode(array_values($existingData)));
+    
+        // Suppression du fichier physique
+        $cheminFichier = '../fichiersUpload/' . $nomFichier;
+        if (file_exists($cheminFichier)) {
+            unlink($cheminFichier);
+        }
+    header("Location: ../pages/fichiers.php");
+    exit();
+
+}
+
+
+
+function nombreTelechargement($nomFichier)
+{
+    $dataFichier = file_get_contents('../data/dataFichiers.json');
+    $dataFichiers = json_decode($dataFichier, true);
+    foreach ($dataFichiers as &$f) {
+        if ($f["name"] == $nomFichier) {
+            $f["nombreTelechargement"] = $f["nombreTelechargement"] + 1;
+            file_put_contents('../data/dataFichiers.json', json_encode($dataFichiers));
+            return $f["nombreTelechargement"];
+            break;
+        }
+    }
+    return 0; // Valeur de retour par défaut si aucun fichier correspondant n'est trouvé
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +88,10 @@ $erreur = upload();
 </head>
 <?php require_once '../composants/header.php'; ?>
     <div id="contain">
-        <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')">Ajouter un fichier</a>
-        <?php if($erreur !== ""): ?>
+        <a class="btn btnAjout" href="ajoutFichier.php">Ajouter un fichier</a>
+        <!-- <?php if($erreur !== ""): ?>
             <p class="erreur"><?= $erreur ?></p>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <!-- tableau de mes fichiers -->
         <h2 id="mesFichiers">Mes fichiers</h2>
         <!-- si j'ai des fichiers, le tableau s'affiche -->
@@ -61,6 +107,7 @@ $erreur = upload();
                         <th>Partager avec :</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     <!-- boucle sur chacun de mes fichiers -->
                     <?php foreach ($mesFichiers as $f) : ?>
@@ -69,19 +116,12 @@ $erreur = upload();
                             <!-- ajout fonction JS pour delete au niveau de la popup de confirmation? -->
                             <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                             <!-- ajout fonction JS pour download -->
-                            <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
+                            <td><a <?php nombreTelechargement($f['name']);?> href="../fichiersUpload/<?= $f['name'] ?>" download ><span class="material-symbols-outlined">download</span></td>
                             <td><?= $f['size'] ?> octets</td>
                             <td><?= $f['nombreTelechargement'] ?></td>
                             <!-- si email de partage : l'afficher -->
                             <td><?php if($f['emailPartage']): ?>
                                 <?= $f['emailPartage'] ?>
-                            <!-- si pas d'email de partage rempli, formulaire pour en ajouter un -->
-                            <?php else: ?>
-                                <form method="POST">
-                                    <input class="hidden" type="text" value=<?= $f['name']?> name="name">
-                                    <input class="emailPartage" type="email" name="emailPartage">
-                                    <button class="btn" type="submit" action="../fonctions/emailPartage.php" value="Partager">Partager</button>
-                                </form>
                              <?php endif ?></td>
                         </tr>
                     <?php endforeach ?>
@@ -100,7 +140,6 @@ $erreur = upload();
                 <tr>
                     <th>Nom du fichier</th>
                     <th>Taille</th>
-                    <th>Supprimer</th>
                     <th>Télécharger</th>
                 </tr>
             </thead>
@@ -110,8 +149,6 @@ $erreur = upload();
                     <tr>
                         <td><?= $f['name'] ?></td>
                         <td><?= $f['size'] ?> octets</td>
-                        <!-- ajout fonction JS pour delete au niveau de la popup de confirmation -->
-                        <td><span onclick="ouvrirModal('modalDeletePartage', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                         <!-- ajout fonction JS pour download -->
                         <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
                     </tr>
@@ -126,26 +163,15 @@ $erreur = upload();
 <!-- ----------------------------------------------------------------
                             POP UPS 
 --------------------------------------------------------------------->
-    <!--Popup d'ajout de fichier-->
-    <div id="modalAjout" class="modal hidden">
-        <div class="modal-content">
-            <?php include '../pages/popUpAjoutFichier.php' ?>
-        </div>
-    </div>
     <!--Popup de confirmation de suppression-->
     <div id="modalDelete" class="modal hidden">
         <div class="container">
             <h1>Suppression du fichier</h1>
             <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
-            <button class="btn btnDelete" >Oui</button>
-            <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
-        </div>
-    </div>
-    <div id="modalDeletePartage" class="modal hidden">
-        <div class="container">
-            <h1>Suppression du fichier</h1>
-            <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
-            <button class="btn btnDelete" >Oui</button>
+            <form method="POST">
+                <input class="hidden" type="text" value="<?= $f['name']?>" name="name">
+                <button class="btn btnDelete" type="submit">Oui</button>
+            </form>
             <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
     </div>
