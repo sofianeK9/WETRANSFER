@@ -26,8 +26,7 @@ if ($dataFichiers != null){
         }
     }
 }
-$erreur = "";
-upload();
+$erreur = upload();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,21 +40,12 @@ upload();
 
     <title>Liste des fichiers</title>
 </head>
-<header>
-    <!-- barre de navigation -->
-    <nav class="navbar">
-        <a href="#mesFichiers">Mes fichiers</a>
-        <a href="#fichiersPartages">Fichiers partagés</a>
-        <a onclick="ouvrirModal('modalModifIdentifiant')">Modifier mon email</a>
-        <a onclick="ouvrirModal('modalModifMdp')">Modifier mon mot de passe</a>
-        <a href="../pages/deconnexion.php">Se déconnecter</a>
-    </nav>
-</header>
-
-<body>
+<?php require_once '../composants/header.php'; ?>
     <div id="contain">
-        <h2>Bonjour <?= $_SESSION["identifiant"] ?></h2>
         <a class="btn btnAjout" onclick="ouvrirModal('modalAjout')">Ajouter un fichier</a>
+        <?php if($erreur !== ""): ?>
+            <p class="erreur"><?= $erreur ?></p>
+        <?php endif; ?>
         <!-- tableau de mes fichiers -->
         <h2 id="mesFichiers">Mes fichiers</h2>
         <!-- si j'ai des fichiers, le tableau s'affiche -->
@@ -66,7 +56,9 @@ upload();
                         <th>Nom du fichier</th>
                         <th>Supprimer</th>
                         <th>Retélécharger</th>
-                        <th>Détails</th>
+                        <th>Taille</th>
+                        <th>Nombre de téléchargements</th>
+                        <th>Partager avec :</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,9 +69,20 @@ upload();
                             <!-- ajout fonction JS pour delete au niveau de la popup de confirmation? -->
                             <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                             <!-- ajout fonction JS pour download -->
-                            <td>
-                                <a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
-                            <td><a class="btn" onclick="ouvrirModal('modalDetails', '<?= $f['name'] ?>', '<?= $f['size'] ?>', '<?= $f['nombreTelechargement'] ?>','<?= $f['emailPartage'] ?>')">Détails</a></td>
+                            <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
+                            <td><?= $f['size'] ?> octets</td>
+                            <td><?= $f['nombreTelechargement'] ?></td>
+                            <!-- si email de partage : l'afficher -->
+                            <td><?php if($f['emailPartage']): ?>
+                                <?= $f['emailPartage'] ?>
+                            <!-- si pas d'email de partage rempli, formulaire pour en ajouter un -->
+                            <?php else: ?>
+                                <form method="POST">
+                                    <input class="hidden" type="text" value=<?= $f['name']?> name="name">
+                                    <input class="emailPartage" type="email" name="emailPartage">
+                                    <button class="btn" type="submit" action="../fonctions/emailPartage.php" value="Partager">Partager</button>
+                                </form>
+                             <?php endif ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -96,6 +99,7 @@ upload();
             <thead>
                 <tr>
                     <th>Nom du fichier</th>
+                    <th>Taille</th>
                     <th>Supprimer</th>
                     <th>Télécharger</th>
                 </tr>
@@ -105,8 +109,9 @@ upload();
                 <?php foreach ($fichiersPartages as $f) : ?>
                     <tr>
                         <td><?= $f['name'] ?></td>
+                        <td><?= $f['size'] ?> octets</td>
                         <!-- ajout fonction JS pour delete au niveau de la popup de confirmation -->
-                        <td><span onclick="ouvrirModal('modalDelete', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
+                        <td><span onclick="ouvrirModal('modalDeletePartage', '<?= $f['name'] ?>')" class="material-symbols-outlined">delete</span></td>
                         <!-- ajout fonction JS pour download -->
                         <td><a href="../fichiersUpload/<?= $f['name'] ?>" download><span class="material-symbols-outlined">download</span></td>
                     </tr>
@@ -121,30 +126,13 @@ upload();
 <!-- ----------------------------------------------------------------
                             POP UPS 
 --------------------------------------------------------------------->
-    <!--//Popup d'ajout de fichier-->
+    <!--Popup d'ajout de fichier-->
     <div id="modalAjout" class="modal hidden">
         <div class="modal-content">
             <?php include '../pages/popUpAjoutFichier.php' ?>
         </div>
     </div>
-    <!--Popup de détails(ou mettre ds le meme modal avec des classe add remove ?)-->
-    <div id="modalDetails" class="modal hidden">
-        <div class="modal-content">
-            <?php include '../pages/popUpDetails.php' ?>
-        </div>
-    </div>
-    <!--//Popup de modif identifiant-->
-    <div id="modalModifIdentifiant" class="modal hidden">
-        <div class="modal-content">
-            <?php include '../pages/popUpModificationIdentifiant.php' ?>
-        </div>
-    </div>
-    <!--Popup de modif mdp-->
-    <div id="modalModifMdp" class="modal hidden">
-        <div class="modal-content">
-            <?php include '../pages/popUpModificationMdp.php' ?>
-        </div>
-    </div>
+    <!--Popup de confirmation de suppression-->
     <div id="modalDelete" class="modal hidden">
         <div class="container">
             <h1>Suppression du fichier</h1>
@@ -153,6 +141,13 @@ upload();
             <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
         </div>
     </div>
+    <div id="modalDeletePartage" class="modal hidden">
+        <div class="container">
+            <h1>Suppression du fichier</h1>
+            <h2 id="fileToDelete" class="detail">Etes-vous certain de vouloir supprimer le fichier ? </h2>
+            <button class="btn btnDelete" >Oui</button>
+            <a onclick="fermerModal('modalDelete')" class="btnClose">X</a>
+        </div>
+    </div>
 </body>
-
 </html>

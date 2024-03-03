@@ -88,6 +88,7 @@ function upload()
         fwrite($dataFichiers, "$emailPartager\n");
         fclose($dataFichiers);
         $nombreTelechargement = 0;
+        $erreur = "";
 
         // si il n'y a pas d'erreur :
         if ($fichier['error'] == UPLOAD_ERR_OK) {
@@ -147,5 +148,6 @@ function upload()
         } else {
             $erreur = "Une erreur est survenue";
         }
+        return $erreur;
     }
 }
