@@ -10,11 +10,6 @@ function inscription()
         $confirmationmotDePasse = filter_input(INPUT_POST, "confirmationmotDePasse");
         $motDePasseHascher = password_hash($confirmationmotDePasse, PASSWORD_DEFAULT);
 
-        if (empty($identifiant) || empty($motDePasse) || empty($confirmationmotDePasse)) {
-            echo "Veuillez remplir les champs correctement.";
-            return;
-        }
-
         $fichier = file('identifiants.txt');
         foreach ($fichier as $ligne) {
             $infos = explode(',', $ligne);
