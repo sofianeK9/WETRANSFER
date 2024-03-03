@@ -28,7 +28,7 @@ if (isset($_POST['chgtEmail'])) {
     }
 
     if ($motDePasse == $motDePasseConfirme) {
-        require_once '../fonctions/changementMdpcomposants/modificationIdentifiant.php';
+        require_once '../fonctions/changementMdpcomposants.php';
         $retourChangement = changementMdp($ancienMotDePasse, $motDePasse);
         list($valide, $retourMdp, $identifiant, $ancienMotDePasse, $motDePasse, $data1) = $retourChangement;
     }
