@@ -81,12 +81,6 @@ function upload()
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $fichier = $_FILES['fichierUpload'];
-
-        
-        $emailPartager = filter_input(INPUT_POST, "emailPartage", FILTER_VALIDATE_EMAIL);
-        $dataFichiers = fopen('../data/dataFichiers.json', "a");
-        fwrite($dataFichiers, "$emailPartager\n");
-        fclose($dataFichiers);
         $nombreTelechargement = 0;
         $erreur = "";
 
