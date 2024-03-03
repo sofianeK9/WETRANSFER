@@ -1,17 +1,6 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ancienMotDePasse = filter_input(INPUT_POST, "ancienMotDePasse");
-    $motDePasse = filter_input(INPUT_POST, "motDePasse");
-    $motDePasseConfirme = filter_input(INPUT_POST, "motDePasseConfirme");
-}
 
-if ($motDePasse == $motDePasseConfirme) {
-    require_once '../fonctions/changementMdp.php';
-    $retourChangement = changementMdp($ancienMotDePasse, $motDePasse);
-    list($valide, $retourMdp, $identifiant, $ancienMotDePasse, $motDePasse, $data1) = $retourChangement;
-
-}
 
 ?>
 <div class="container">
@@ -26,6 +15,6 @@ if ($motDePasse == $motDePasseConfirme) {
         <label for="motDePasseConf">Confirmer votre mot de passe : </label>
         <input type="password" id="motDePasseConf" name="motDePasseconf">
 
-        <input type="submit" value="Valider">
+        <input type="submit" name="chgtMotDePasse" value="Valider">
     </form>
 </div>

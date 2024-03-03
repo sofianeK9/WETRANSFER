@@ -1,5 +1,6 @@
 <?php
 
+
 function changementMdp($ancienMotDePasse, $motDePasse)
 {
     $identifieur = $_SESSION["identifiant"];
