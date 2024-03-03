@@ -27,9 +27,6 @@ if ($dataFichiers != null){
     }
 }
 
-var_dump($mesFichiers);
-var_dump($f['name']);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Fonction de suppression d'un fichier
     $existingData = json_decode(file_get_contents('../data/dataFichiers.json'), true);
@@ -55,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 
 }
-
 
 
 function nombreTelechargement($nomFichier)
@@ -89,9 +85,6 @@ function nombreTelechargement($nomFichier)
 <?php require_once '../composants/header.php'; ?>
     <div id="contain">
         <a class="btn btnAjout" href="ajoutFichier.php">Ajouter un fichier</a>
-        <!-- <?php if($erreur !== ""): ?>
-            <p class="erreur"><?= $erreur ?></p>
-        <?php endif; ?> -->
         <!-- tableau de mes fichiers -->
         <h2 id="mesFichiers">Mes fichiers</h2>
         <!-- si j'ai des fichiers, le tableau s'affiche -->

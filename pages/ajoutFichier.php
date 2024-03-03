@@ -1,6 +1,6 @@
 <?php require_once '../fonctions/fonctions.php';
 session_start();
-upload();
+$erreur = upload();
 
 ?>
 
@@ -17,6 +17,9 @@ upload();
     <div class="container">
         <div class="ajoutFichier">
             <h1>Ajouter un fichier</h1>
+            <?php if($erreur !== ""): ?>
+                <p class="erreur"><?= $erreur ?></p>
+            <?php endif; ?>
             <form method="POST" enctype="multipart/form-data">
                 <label for="fichierUpload">Choisir un fichier</label>
                 <input type="file" name="fichierUpload">
