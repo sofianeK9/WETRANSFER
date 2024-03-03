@@ -3,6 +3,7 @@
 session_start();
 
 if (isset($_POST['chgtEmail'])) {
+    var_dump($_POST);
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupération des informations du formulaire ( ancien email, nouvel email )
         $ancienEmail = filter_input(INPUT_POST, "ancienEmail");
@@ -13,25 +14,29 @@ if (isset($_POST['chgtEmail'])) {
 
         // Appel de la fonction de changement de l'identifiant
         require_once '../fonctions/changementIdentifiant.php';
-        list($retourChangement, $message) = changementIdentifiant($ancienEmail, $email);
+        list($retourChangementEmail, $messageEmail) = changementIdentifiant($ancienEmail, $email);
     } else {
-        $retourChangement = false;
-        $message = "Les deux emails sont identiques. Veuillez en choisir un autre.";
+        $retourChangementEmail = false;
+        $messageEmail = "Les deux emails sont identiques. Veuillez en choisir un autre.";
     }
 }
 
-if (isset($_POST['chgtEmail'])) {
+if (isset($_POST['chgtMotDePasse'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Récupération des informations du formulaire ( ancien mot de passe , nouvel mot de passe )
         $ancienMotDePasse = filter_input(INPUT_POST, "ancienMotDePasse");
         $motDePasse = filter_input(INPUT_POST, "motDePasse");
-        $motDePasseConfirme = filter_input(INPUT_POST, "motDePasseConfirme");
+        $motDePasseConf = filter_input(INPUT_POST, "motDePasseConf");
     }
 
-    if ($motDePasse == $motDePasseConfirme) {
+    if ($motDePasse == $motDePasseConf) {
         require_once '../fonctions/changementMdp.php';
-        $retourChangement = changementMdp($ancienMotDePasse, $motDePasse);
-        list($valide, $retourMdp, $identifiant, $ancienMotDePasse, $motDePasse, $data1) = $retourChangement;
+        list($retourChangementMdp, $messageMdp) = changementMdp($ancienMotDePasse, $motDePasse);
+    } else {
+        $retourChangementMdp = false;
+        $messageMdp = "Les deux mots de passe ne sont pas identiques. Veuillez recommencer.";
     }
+
 }
 
 ?>
@@ -50,9 +55,14 @@ if (isset($_POST['chgtEmail'])) {
 <?php include '../composants/header.php'; ?>
 <main>
     <h1 class="titre">Modification du profil</h1>
-    <?php if ($message) : ?>
+    <?php if (isset($retourChangementEmail)) : ?>
         <div class="boxMessage">
-            <p><?= $message ?></p>
+            <p><?= $messageEmail ?></p>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($retourChangementMdp)) : ?>
+        <div class="boxMessage">
+            <p><?= $messageMdp ?></p>
         </div>
     <?php endif; ?>
     <div class="boxModification">
