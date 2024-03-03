@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 <div class="container">
     <form method="POST" class="form_modif">
@@ -13,7 +11,7 @@
         <input type="password" id="motDePasse" name="motDePasse">
 
         <label for="motDePasseConf">Confirmer votre mot de passe : </label>
-        <input type="password" id="motDePasseConf" name="motDePasseconf">
+        <input type="password" id="motDePasseConf" name="motDePasseConf">
 
         <input type="submit" name="chgtMotDePasse" value="Valider">
     </form>

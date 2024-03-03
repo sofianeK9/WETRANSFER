@@ -27,7 +27,6 @@ if (isset($_POST['chgtMotDePasse'])) {
         $motDePasse = filter_input(INPUT_POST, "motDePasse");
         $motDePasseConf = filter_input(INPUT_POST, "motDePasseConf");
     }
-
     if ($motDePasse == $motDePasseConf) {
         require_once '../fonctions/changementMdp.php';
         list($retourChangementMdp, $messageMdp) = changementMdp($ancienMotDePasse, $motDePasse);
@@ -35,7 +34,6 @@ if (isset($_POST['chgtMotDePasse'])) {
         $retourChangementMdp = false;
         $messageMdp = "Les deux mots de passe ne sont pas identiques. Veuillez recommencer.";
     }
-
 }
 
 ?>
